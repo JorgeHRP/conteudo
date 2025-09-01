@@ -19,7 +19,9 @@
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
       </button>
+
       <div class="collapse navbar-collapse" id="navbarNav">
+        <!-- Links principais -->
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
             <a class="nav-link {% if request.endpoint == 'home' %}active{% endif %}" href="{{ url_for('home') }}">Home</a>
@@ -30,9 +32,25 @@
           <li class="nav-item">
             <a class="nav-link {% if request.endpoint == 'conversas' %}active{% endif %}" href="{{ url_for('conversas') }}">Conversas</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link {% if request.endpoint == 'uploads' %}active{% endif %}" href="{{ url_for('uploads') }}">Uploads</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if request.endpoint == 'disparo' %}active{% endif %}" href="{{ url_for('disparo') }}">Disparo</a>
+          </li>
         </ul>
-        <span class="navbar-text text-light me-3">Olá, {{ session['usuario'] }}</span>
-        <a href="{{ url_for('logout') }}" class="btn btn-outline-light">Logout</a>
+
+        <!-- Menu de usuário -->
+        <div class="dropdown">
+          <a class="btn btn-outline-light dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+            {{ session['usuario'] }}
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li><a class="dropdown-item" href="{{ url_for('perfil') }}">Perfil</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="{{ url_for('logout') }}">Logout</a></li>
+          </ul>
+        </div>
       </div>
     </div>
   </nav>
